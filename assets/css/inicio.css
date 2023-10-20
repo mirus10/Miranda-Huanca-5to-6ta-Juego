@@ -1,0 +1,29 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    
+}
+
+.con{
+    background-image: url(../img/fondo-export.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/*/BOTON PLAY/*/
+
+img{
+    border: none;
+    border-radius: 100px;
+    margin-left: center;
+    display:flex;
+}
+
+#btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 40%;
+    text-align: center;
+}
