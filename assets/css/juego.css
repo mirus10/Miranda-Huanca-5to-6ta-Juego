@@ -1,0 +1,348 @@
+body{
+    background-color: rgb(16, 137, 89);
+    margin: 0 ;
+}
+
+#canvas{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 80px;
+}
+
+
+#ajustes{
+  margin-top: 18px;
+  margin-left: 15px;
+  cursor: pointer;
+  width: 50px;
+}
+
+
+
+.btn-vertical {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+
+
+
+/*VOLUMEN*/
+
+.contVolumen {
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.slider {
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3; /* Color de fondo */
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4caf50; /* Color del pulgar (thumb) */
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4caf50; /* Color del pulgar (thumb) para Firefox */
+  cursor: pointer;
+}
+
+
+
+
+
+/*
+https://www.w3schools.com/howto/howto_js_rangeslider.asp
+*/
+
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+  <title>Canvas Cuadrícula con Imágenes y Flechas de Teclado</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+
+  <script>
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    var cuadrados = createGrid(8, 8);
+    var cuadradoMovil = { x: 0, y: 0, width: 50, height: 50, color: 'gray' };
+    var imagesElementos = ['image1.jpg', 'image2.jpg', 'image3.jpg'];  // Agrega las rutas de tus imágenes aquí
+    var objects = [];
+
+    function createGrid(rows, cols) {
+      var grid = [];
+      for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+          grid.push({
+            x: j * 50,
+            y: i * 50,
+            width: 50,
+            height: 50,
+            color: '#ECD691',
+          });
+        }
+      }
+      return grid;
+    }
+
+    function getRandomImage() {
+      var randomIndex = Math.floor(Math.random() * imagesElementos.length);
+      var image = new Image();
+      image.src = imagesElementos[randomIndex];
+      return image;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Dibuja cuadrados
+      for (var i = 0; i < cuadrados.length; i++) {
+        drawSquare(cuadrados[i]);
+      }
+
+      // Dibuja imágenes
+      for (var i = 0; i < objects.length; i++) {
+        drawImage(objects[i].x, objects[i].y, objects[i].image);
+      }
+
+      // Dibuja cuadrado móvil
+      drawSquare(cuadradoMovil);
+    }
+
+    function drawSquare(square) {
+
+      ctx.fillStyle = square.color;
+      ctx.fillRect(square.x, square.y, square.width, square.height);
+    }
+
+    function drawImage(x, y, image) {
+      ctx.drawImage(image, x, y, 50, 50);
+    }
+
+    function handleArrowKey(event) {
+      switch (event.key) {
+        case 'ArrowUp':
+          cuadradoMovil.y = Math.max(0, cuadradoMovil.y - 50);
+          break;
+        case 'ArrowDown':
+          cuadradoMovil.y = Math.min(canvas.height - cuadradoMovil.height, cuadradoMovil.y + 50);
+          break;
+        case 'ArrowLeft':
+          cuadradoMovil.x = Math.max(0, cuadradoMovil.x - 50);
+          break;
+        case 'ArrowRight':
+          cuadradoMovil.x = Math.min(canvas.width - cuadradoMovil.width, cuadradoMovil.x + 50);
+          break;
+      }
+
+      updateGrid();
+      draw();
+    }
+
+    function updateGrid() {
+      // Verifica si el cuadrado móvil colisiona con algún cuadrado y agrega la imagen
+      for (var i = 0; i < cuadrados.length; i++) {
+        if (
+          cuadradoMovil.x < cuadrados[i].x + cuadrados[i].width &&
+          cuadradoMovil.x + cuadradoMovil.width > cuadrados[i].x &&
+          cuadradoMovil.y < cuadrados[i].y + cuadrados[i].height &&
+          cuadradoMovil.y + cuadradoMovil.height > cuadrados[i].y
+        ) {
+            cuadrados[i].color = cuadradoMovil.color;
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleArrowKey);
+
+    // Aparecer imágenes cada 3 segundos (3000 milisegundos)
+    setInterval(function () {
+      var image = getRandomImage();
+      var randomIndex = Math.floor(Math.random() * cuadrados.length);
+      objects.push({ x: cuadrados[randomIndex].x, y: cuadrados[randomIndex].y, image: image });
+    }, 3000);
+
+    // Inicia el bucle de animación
+    setInterval(draw, 100); // Cambia el intervalo según tus necesidades
+  </script>
+</body>
+</html>
+
+*/
+
+
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+  <title>Canvas Cuadrícula con Imágenes y Flechas de Teclado</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+
+  <script>
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    var cuadrados = createGrid(8, 8);
+    var cuadradoMovil = { x: 0, y: 0, width: 50, height: 50, color: 'gray' };
+    var imagesElementos = ['../img/quesito.png', '../img/quesito.png', '../img/quesito.png'];  // Agrega las rutas de tus imágenes aquí
+    var objects = [];
+
+    function createGrid(rows, cols) {
+      var grid = [];
+      for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+          grid.push({
+            x: j * 50,
+            y: i * 50,
+            width: 50,
+            height: 50,
+            color: '#ECD691',
+          });
+        }
+      }
+      return grid;
+    }
+
+    function getRandomImage() {
+      var randomIndex = Math.floor(Math.random() * imagesElementos.length);
+      var image = new Image();
+      image.src = imagesElementos[randomIndex];
+      return image;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Dibuja cuadrados
+      for (var i = 0; i < cuadrados.length; i++) {
+        drawSquare(cuadrados[i]);
+      }
+
+      // Dibuja imágenes
+      for (var i = 0; i < objects.length; i++) {
+        drawImage(objects[i].x, objects[i].y, objects[i].image);
+      }
+
+      // Dibuja cuadrado móvil
+      drawSquare(cuadradoMovil);
+    }
+
+    function drawSquare(square) {
+      ctx.fillStyle = square.color;
+      ctx.fillRect(square.x, square.y, square.width, square.height);
+    }
+
+    function drawImage(x, y, image) {
+      ctx.drawImage(image, x, y, 50, 50);
+    }
+
+    function handleArrowKey(event) {
+      switch (event.key) {
+        case 'ArrowUp':
+          cuadradoMovil.y = Math.max(0, cuadradoMovil.y - 50);
+          break;
+        case 'ArrowDown':
+          cuadradoMovil.y = Math.min(canvas.height - cuadradoMovil.height, cuadradoMovil.y + 50);
+          break;
+        case 'ArrowLeft':
+          cuadradoMovil.x = Math.max(0, cuadradoMovil.x - 50);
+          break;
+        case 'ArrowRight':
+          cuadradoMovil.x = Math.min(canvas.width - cuadradoMovil.width, cuadradoMovil.x + 50);
+          break;
+      }
+
+      updateGrid();
+      draw();
+    }
+
+    function updateGrid() {
+      // Verifica si el cuadrado móvil colisiona con algún objeto y borra la imagen
+      for (var i = 0; i < objects.length; i++) {
+        if (
+          cuadradoMovil.x < objects[i].x + 50 &&
+          cuadradoMovil.x + cuadradoMovil.width > objects[i].x &&
+          cuadradoMovil.y < objects[i].y + 50 &&
+          cuadradoMovil.y + cuadradoMovil.height > objects[i].y
+        ) {
+          // Elimina el objeto del vector
+          objects.splice(i, 1);
+          i--;  // Ajusta el índice para evitar problemas al modificar el vector
+        }
+      }
+
+      // Actualiza la cuadrícula pintando los cuadrados
+      for (var i = 0; i < cuadrados.length; i++) {
+        
+          if (
+            cuadradoMovil.x < cuadrados[i].x + cuadrados[i].width &&
+            cuadradoMovil.x + cuadradoMovil.width > cuadrados[i].x &&
+            cuadradoMovil.y < cuadrados[i].y + cuadrados[i].height &&
+            cuadradoMovil.y + cuadradoMovil.height > cuadrados[i].y
+          ) {
+            cuadrados[i].color = cuadradoMovil.color;
+          }
+      }
+    }
+
+    window.addEventListener('keydown', handleArrowKey);
+
+    // Aparecer imágenes cada 3 segundos (3000 milisegundos)
+    setInterval(function () {
+      var image = getRandomImage();
+      var randomIndex = Math.floor(Math.random() * cuadrados.length);
+      objects.push({ x: cuadrados[randomIndex].x, y: cuadrados[randomIndex].y, image: image });
+    }, 3000);
+
+    // Inicia el bucle de animación
+    setInterval(draw, 100); // Cambia el intervalo según tus necesidades
+  </script>
+</body>
+</html>
+
+*/
+
+

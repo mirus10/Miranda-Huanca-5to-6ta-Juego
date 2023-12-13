@@ -4,26 +4,48 @@ body{
     
 }
 
-.con{
-    background-image: url(../img/fondo-export.png);
+.contenedorBotones{
+    background-image: url(../img/fondoPrincipal.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
 
-/*/BOTON PLAY/*/
+
+
+
+/*/MENU/*/
+
+#contMenu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 29%;
+}
+
+
+
 
 img{
     border: none;
     border-radius: 100px;
     margin-left: center;
     display:flex;
+    width: 35vw;
+    height: 8vw;
 }
 
-#btn{
+#play{
     display: flex;
-    justify-content: center;
-    margin-top: 40%;
+    justify-content: right;
     text-align: center;
+    border-radius: 4vw;
+    transition: 0.1s;
+    width: 35vw;
+    height: 8vw;
+}
+
+#play:hover{
+    box-shadow: 0 0 8px rgb(244, 215, 102), 0 0 23px rgb(244, 215, 102), 0 0 43px rgb(244, 215, 102);
 }
