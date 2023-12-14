@@ -119,8 +119,12 @@ function draw() {
         drawSquare(celdasPintadasVioletas[i]);
     }
 
-    for (let i = 0; i < elementos.length; i++) {
-        drawImage(elementos[i].x, elementos[i].y, elementos[i].image);
+    for (let i = 0; i < elementosQuesos.length; i++) {
+        drawImage(elementosQuesos[i].x, elementosQuesos[i].y, elementosQuesos[i].image);
+    }
+
+    for (let i = 0; i < elementosBombitas.length; i++) {
+        drawImage(elementosBombitas[i].x, elementosBombitas[i].y, elementosBombitas[i].image);
     }
 
 
@@ -172,7 +176,7 @@ function draw() {
 
             setTimeout(function(){
                 teclaAtaqueVioletaPrecionada = false;
-            }, 5000);
+            }, 2000);
 
             
         }else{
@@ -193,7 +197,7 @@ function draw() {
 
             setTimeout(function(){
                 teclaAtaqueRosaPrecionada = false;
-            }, 5000);
+            }, 2000);
 
             
         }else{
@@ -371,6 +375,8 @@ let celdasPintadasVioletas = [cuadritos[63]];
 let ratonRosaTocoBombita = false;
 let ratonVioletaTocoBombita = false;
 
+let ratonVioletaTocoQueso = false;
+let ratonRosaTocoQueso = false;
 
 
 function updateGrid() {
@@ -402,104 +408,116 @@ function updateGrid() {
                 }                
             }          
     }
+    
 
 
 
 
 
-    for (let i = 0; i < elementos.length; i++) {
+    for (let i = 0; i < elementosQuesos.length; i++) {
         
         
         if (
-            cuadraditoRosa.x < elementos[i].x + 70 &&
-            cuadraditoRosa.x + cuadraditoRosa.width > elementos[i].x &&
-            cuadraditoRosa.y < elementos[i].y + 70 &&
-            cuadraditoRosa.y + cuadraditoRosa.height > elementos[i].y
+            cuadraditoRosa.x < elementosQuesos[i].x + 70 &&
+            cuadraditoRosa.x + cuadraditoRosa.width > elementosQuesos[i].x &&
+            cuadraditoRosa.y < elementosQuesos[i].y + 70 &&
+            cuadraditoRosa.y + cuadraditoRosa.height > elementosQuesos[i].y
         ) {
+            rosaTocoQueso = cuadritos.find(cuadrito =>
+                cuadrito.x === elementosQuesos[i].x && cuadrito.y === elementosQuesos[i].y
+            );
 
-            if(elementos[i].image === quesito){
-                rosaTocoQueso = cuadritos.find(cuadrito =>
-                    cuadrito.x === elementos[i].x && cuadrito.y === elementos[i].y
-                );
-    
-                elementos.splice(i, 1);
-                i--;
-    
-                
-    
-                for (let k = 0; k < celdasPintadasRosas.length; k++) {
-                    if(celdasPintadasRosas[k].color !== cuadraditoRosa.color){
-                        celdasPintadasRosas.splice(k, 1)
-                        k--;
-                    }
+            elementosQuesos.splice(i, 1);
+            i--;
+
+            
+
+            for (let k = 0; k < celdasPintadasRosas.length; k++) {
+                if(celdasPintadasRosas[k].color !== cuadraditoRosa.color){
+                    celdasPintadasRosas.splice(k, 1)
+                    k--;
                 }
-    
-                
-    
-                celdasPintadasRosas.forEach(cuadri =>
-                    cuadri.color = colorCuadritosPlataforma,
-                );
-    
-                puntosRosa = celdasPintadasRosas.length - 1;
-                puntajeFinalRosa += puntosRosa
-                
-                celdasPintadasRosas = []
-
-
-
-            }else if(elementos[i].image === bombita){
-                elementos.splice(i, 1);
-                i--;
-                ratonRosaTocoBombita = true;
             }
 
             
 
+            celdasPintadasRosas.forEach(cuadri =>
+                cuadri.color = colorCuadritosPlataforma,
+            );
 
+            puntosRosa = celdasPintadasRosas.length - 1;
+            puntajeFinalRosa += puntosRosa
+            
+            celdasPintadasRosas = []
+
+            ratonRosaTocoQueso = true;
 
 
 
 
         }else if (
-            cuadraditoVioleta.x < elementos[i].x + 70 &&
-            cuadraditoVioleta.x + cuadraditoVioleta.width > elementos[i].x &&
-            cuadraditoVioleta.y < elementos[i].y + 70 &&
-            cuadraditoVioleta.y + cuadraditoVioleta.height > elementos[i].y
+            cuadraditoVioleta.x < elementosQuesos[i].x + 70 &&
+            cuadraditoVioleta.x + cuadraditoVioleta.width > elementosQuesos[i].x &&
+            cuadraditoVioleta.y < elementosQuesos[i].y + 70 &&
+            cuadraditoVioleta.y + cuadraditoVioleta.height > elementosQuesos[i].y
         ) {
-            if(elementos[i].image === quesito){
-                violetaTocoQueso = cuadritos.find(cuadrito =>
-                    cuadrito.x === elementos[i].x && cuadrito.y === elementos[i].y
-                );
-    
-                elementos.splice(i, 1);
-                i--;
-                
-                
-    
-                for (let k = 0; k < celdasPintadasVioletas.length; k++) {
-                    if(celdasPintadasVioletas[k].color !== cuadraditoVioleta.color){
-                        celdasPintadasVioletas.splice(k, 1)
-                        k--;
-                    }
+            violetaTocoQueso = cuadritos.find(cuadrito =>
+                cuadrito.x === elementosQuesos[i].x && cuadrito.y === elementosQuesos[i].y
+            );
+
+            elementosQuesos.splice(i, 1);
+            i--;
+            
+            
+
+            for (let k = 0; k < celdasPintadasVioletas.length; k++) {
+                if(celdasPintadasVioletas[k].color !== cuadraditoVioleta.color){
+                    celdasPintadasVioletas.splice(k, 1)
+                    k--;
                 }
-    
-    
-                celdasPintadasVioletas.forEach(cuadri =>
-                    cuadri.color = colorCuadritosPlataforma
-                );
-    
-                puntosVioleta = celdasPintadasVioletas.length - 1;
-                puntajeFinalVioleta += puntosVioleta;
-    
-                celdasPintadasVioletas = []
-
-
-
-            }else if(elementos[i].image === bombita){
-                elementos.splice(i, 1);
-                i--;
-                ratonVioletaTocoBombita = true;
             }
+
+
+            celdasPintadasVioletas.forEach(cuadri =>
+                cuadri.color = colorCuadritosPlataforma
+            );
+
+            puntosVioleta = celdasPintadasVioletas.length - 1;
+            puntajeFinalVioleta += puntosVioleta;
+
+            celdasPintadasVioletas = []
+
+            ratonVioletaTocoQueso = true;
+        }
+    }
+
+
+
+    for (let i = 0; i < elementosBombitas.length; i++) {
+        
+        
+        if (
+            cuadraditoRosa.x < elementosBombitas[i].x + 70 &&
+            cuadraditoRosa.x + cuadraditoRosa.width > elementosBombitas[i].x &&
+            cuadraditoRosa.y < elementosBombitas[i].y + 70 &&
+            cuadraditoRosa.y + cuadraditoRosa.height > elementosBombitas[i].y
+        ) {
+            elementosBombitas.splice(i, 1);
+            i--;
+            ratonRosaTocoBombita = true;
+
+
+
+
+        }else if (
+            cuadraditoVioleta.x < elementosBombitas[i].x + 70 &&
+            cuadraditoVioleta.x + cuadraditoVioleta.width > elementosBombitas[i].x &&
+            cuadraditoVioleta.y < elementosBombitas[i].y + 70 &&
+            cuadraditoVioleta.y + cuadraditoVioleta.height > elementosBombitas[i].y
+        ) {
+            elementosBombitas.splice(i, 1);
+            i--;
+            ratonVioletaTocoBombita = true;
         }
     }
     
@@ -519,53 +537,88 @@ bombita.src = '../img/bombita.png';
 
 
 
-let elementos = []
+let elementosQuesos = []
 let generadorDeQuesos;
+let tiempoQueso = 1;
 
-function crearQuesos(){
-    
-    generadorDeQuesos = setInterval(function(){
+function generarPosicionAleatoria() {
+    let indiceAleatoria = Math.floor(Math.random() * cuadritos.length);
+    let posicionAleatoria = cuadritos[indiceAleatoria];
+  
+    while (
+      (posicionAleatoria.x === cuadraditoRosa.x && posicionAleatoria.y === cuadraditoRosa.y && posicionAleatoria.color === cuadraditoRosa.color) ||
+      (posicionAleatoria.x === cuadraditoVioleta.x && posicionAleatoria.y === cuadraditoVioleta.y && posicionAleatoria.color === cuadraditoVioleta.color)
+    ) {
+        indiceAleatoria = Math.floor(Math.random() * cuadritos.length);
+        posicionAleatoria = cuadritos[indiceAleatoria];
+    }
+  
+    return posicionAleatoria;
+}
 
+
+function crearQuesos() {
+    generadorDeQuesos = setInterval(function () {
+        
         let image = quesito;
-    
-        let randomIndex = Math.floor(Math.random() * cuadritos.length);
-        let randomPosition = cuadritos[randomIndex];
-    
-        while(
-            (randomPosition.x === cuadraditoRosa.x && randomPosition.y === cuadraditoRosa.y && randomPosition.color === cuadraditoRosa.color) ||
-            (randomPosition.x === cuadraditoVioleta.x && randomPosition.y === cuadraditoVioleta.y && randomPosition.color === cuadraditoVioleta.color)
-        ){
-            randomIndex = Math.floor(Math.random() * cuadritos.length);
-            randomPosition = cuadritos[randomIndex];
+        let posicionAleatoria = generarPosicionAleatoria();
+
+        let posicionOcupadaQueso = elementosQuesos.some(elemento =>
+            elemento.x === posicionAleatoria.x && elemento.y === posicionAleatoria.y
+        );
+
+        let posicionOcupadaBombita = elementosBombitas.some(elemento =>
+            elemento.x === posicionAleatoria.x && elemento.y === posicionAleatoria.y
+        );
+
+        if (!posicionOcupadaQueso && !posicionOcupadaBombita) {
+            elementosQuesos.push({
+                x: posicionAleatoria.x,
+                y: posicionAleatoria.y,
+                image: image,
+            });
         }
-    
-    
-        if(randomPosition.color === colorCuadritosPlataforma){
-            let positionOccupied = elementos.some(elemento =>
-                elemento.x === randomPosition.x && elemento.y === randomPosition.y
-            );
-    
-            if(!positionOccupied){
-                elementos.push({
-                    x: randomPosition.x,
-                    y: randomPosition.y,
-                    image: image,
-                });
+
+        tiempoQueso--;
+        if (tiempoQueso === 0) {
+            clearInterval(generadorDeQuesos);
+
+            if (!ratonVioletaTocoQueso || !ratonRosaTocoQueso) {
+                
+                eliminaQuesos = setTimeout(function () {
+                    if (ratonVioletaTocoQueso || ratonRosaTocoQueso) {
+                        ratonVioletaTocoQueso = false;
+                        ratonRosaTocoQueso = false;
+
+                    } else if (!ratonVioletaTocoQueso || !ratonRosaTocoQueso) {
+
+                        let quesoActual = 0;
+                        quesoActual = elementosQuesos.findIndex(elemento =>
+                            elemento.x === posicionAleatoria.x && elemento.y === posicionAleatoria.y && elemento.image === image
+                        );
+
+                        elementosQuesos.splice(quesoActual, 1);
+                    }
+                }, 1000)
+            }
+
+            tiempoQueso = 1;
+
+            if (tiempoQueso === 1) {
+                crearQuesos();
             }
         }
-    
-    }, 1500);
-}    
 
+    }, 1000);
+}
 
-crearQuesos();
-
-
+crearQuesos()
 
 
 
 
 
+let elementosBombitas = []
 let generadorDeBombitas;
 let tiempoBombita = 1;
 
@@ -574,32 +627,24 @@ function crearBombitas(){
     if(tiempoBombita === 1){
         generadorDeBombitas = setInterval(function(){
             if(!ratonRosaTocoBombita && !ratonVioletaTocoBombita){
+                
                 let image = bombita;
+                let posicionAleatoria = generarPosicionAleatoria();
+            
+                let posicionOcupadaQueso = elementosQuesos.some(elemento =>
+                    elemento.x === posicionAleatoria.x && elemento.y === posicionAleatoria.y
+                );
         
-                let randomIndex = Math.floor(Math.random() * cuadritos.length);
-                let randomPosition = cuadritos[randomIndex];
-            
-                while(
-                    (randomPosition.x === cuadraditoRosa.x && randomPosition.y === cuadraditoRosa.y && randomPosition.color === cuadraditoRosa.color) ||
-                    (randomPosition.x === cuadraditoVioleta.x && randomPosition.y === cuadraditoVioleta.y && randomPosition.color === cuadraditoVioleta.color)
-                ){
-                    randomIndex = Math.floor(Math.random() * cuadritos.length);
-                    randomPosition = cuadritos[randomIndex];
-                }
-            
-            
-                if(randomPosition.color === colorCuadritosPlataforma){
-                    let positionOccupied = elementos.some(elemento =>
-                        elemento.x === randomPosition.x && elemento.y === randomPosition.y
-                    );
-            
-                    if(!positionOccupied){
-                        elementos.push({
-                            x: randomPosition.x,
-                            y: randomPosition.y,
-                            image: image,
-                        });
-                    }
+                let posicionOcupadaBombita = elementosBombitas.some(elemento =>
+                    elemento.x === posicionAleatoria.x && elemento.y === posicionAleatoria.y
+                );
+        
+                if(!posicionOcupadaQueso && !posicionOcupadaBombita){
+                    elementosBombitas.push({
+                        x: posicionAleatoria.x,
+                        y: posicionAleatoria.y,
+                        image: image,
+                    });
                 }
     
                 tiempoBombita--
@@ -627,7 +672,7 @@ crearBombitas();
 
 
 
-let tiempoTotalSeg = 60;
+let tiempoTotalSeg = 120;
 
 function actualizarTemporizador() {
     contexto.fillStyle = '#108959';
@@ -749,20 +794,33 @@ setInterval(draw, 100);
 
 
 
+
 //AJUSTES DEL JUEGO
+
+let miAudio = document.getElementById('audio');
+
+//MUSIQUITA:
+window.addEventListener('DOMContentLoaded', function () {
+    miAudio.play();
+});
+
+
+
+
+let volumenActual = 50;
 
 function alertaAjustes(){
     clearInterval(temporizador);
     clearInterval(generadorDeQuesos);
-    
+
     Swal.fire({
         title: "MUSIQUITA",
         titleFontSize: '2.5em',
         titleFontFamily: 'Arial Narrow Bold',
         html: `
             <div class="contVolumen">
-                <input type="range" min="1" max="100" value="50" class="slider" id="volumen">
-            </div>            
+                <input type="range" min="1" max="100" value="${volumenActual}" class="slider" id="volumen">
+            </div>
         `,
 
         showCancelButton: true,
@@ -786,23 +844,14 @@ function alertaAjustes(){
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             window.location.href = "/index.html";
         }
-    }); 
+    });
+    
+
+    let barraVolumen = document.getElementById('volumen');
+    barraVolumen.addEventListener('input', function () {
+
+        volumenActual = barraVolumen.value;
+
+        miAudio.volume = volumenActual / 100;
+    });
 }
-
-
-
-
-
-
-
-
-
-
-
-//MUSIQUITA:
-
-const miAudio = document.getElementById('audio');
-
-window.addEventListener('DOMContentLoaded', function () {
-    miAudio.play();
-});
